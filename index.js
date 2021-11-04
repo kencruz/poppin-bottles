@@ -4,7 +4,9 @@ const poppinBottles = require("./poppinBottles");
 const result = poppinBottles(Number(args[0]));
 console.log(
   `TOTAL BOTTLES: ${result.bottles}
-  TOTAL EARNED:
-    BOTTLES: ${result.earned.bottles}
-    CAPS: ${result.earned.caps}`
+REMAINING BOTTLES: ${result.state.remaining.empty}
+REMAINING CAPS: ${result.state.remaining.caps}
+TOTAL EARNED:
+  BOTTLES: ${result.state.earned.bottles}
+  CAPS: ${result.state.earned.caps}`
 );
