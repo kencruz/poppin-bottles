@@ -1,38 +1,32 @@
 const poppinBottles = (num) => {
   // drink recursion
-  const result = drink(Math.floor(num / 2), 0, 0);
+  const result = drink(Math.floor(num / 2));
   return result;
 };
 
-const drink = (bottles, empty, caps, state = { earned: {}, remaining: {} }) => {
-  empty += bottles;
-  caps += bottles;
+const drink = (
+  bottles,
+  state = { earned: { empty: 0, caps: 0 }, remaining: { empty: 0, caps: 0 } }
+) => {
+  state.remaining.empty += bottles;
+  state.remaining.caps += bottles;
   let redeem = 0;
-  if (empty > 1) {
-    const emptyRedeem = Math.floor(empty / 2);
+  if (state.remaining.empty > 1) {
+    const emptyRedeem = Math.floor(state.remaining.empty / 2);
     redeem += emptyRedeem;
-    empty -= emptyRedeem * 2;
-    if (state.earned["bottles"]) {
-      state.earned["bottles"] += emptyRedeem;
-    } else {
-      state.earned["bottles"] = emptyRedeem;
-    }
+    state.remaining.empty -= emptyRedeem * 2;
+    state.earned.empty += emptyRedeem;
   }
-  if (caps > 3) {
-    const capsRedeem = Math.floor(caps / 4);
+  if (state.remaining.caps > 3) {
+    const capsRedeem = Math.floor(state.remaining.caps / 4);
     redeem += capsRedeem;
-    caps -= capsRedeem * 4;
-    if (state.earned["caps"]) {
-      state.earned["caps"] += capsRedeem;
-    } else {
-      state.earned["caps"] = capsRedeem;
-    }
+    state.remaining.caps -= capsRedeem * 4;
+    state.earned.caps += capsRedeem;
   }
   if (redeem) {
-    const drinks = drink(redeem, empty, caps, state);
+    const drinks = drink(redeem, state);
     return { bottles: bottles + drinks.bottles, state };
   } else {
-    state.remaining = { caps, empty };
     return { bottles, state };
   }
 };

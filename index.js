@@ -7,6 +7,6 @@ console.log(
 REMAINING BOTTLES: ${result.state.remaining.empty}
 REMAINING CAPS: ${result.state.remaining.caps}
 TOTAL EARNED:
-  BOTTLES: ${result.state.earned.bottles}
+  BOTTLES: ${result.state.earned.empty}
   CAPS: ${result.state.earned.caps}`
 );
