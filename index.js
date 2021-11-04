@@ -1,6 +1,10 @@
 const args = process.argv.slice(2);
 const poppinBottles = require("./poppinBottles");
 
+const result = poppinBottles(Number(args[0]));
 console.log(
-  `With $${args[0]} you will receive ${poppinBottles(Number(args[0]))} bottles.`
+  `TOTAL BOTTLES: ${result.bottles}
+  TOTAL EARNED:
+    BOTTLES: ${result.earned.bottles}
+    CAPS: ${result.earned.caps}`
 );
